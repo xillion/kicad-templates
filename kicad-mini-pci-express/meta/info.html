@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 6.2.7.1 (Linux)"/>
+	<meta name="created" content="2019-10-15T14:30:54.546983632"/>
+	<meta name="changed" content="2019-10-15T14:47:47.459429606"/>
+	<style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
+		h1 { margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Liberation Serif", serif; font-size: 24pt; font-weight: bold }
+		h1.cjk { font-family: "Noto Serif CJK SC"; font-size: 24pt; font-weight: bold }
+		h1.ctl { font-family: "Lohit Devanagari"; font-size: 24pt; font-weight: bold }
+		h2 { margin-top: 0.14in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Liberation Serif", serif; font-size: 18pt; font-weight: bold }
+		h2.cjk { font-family: "Noto Serif CJK SC"; font-size: 18pt; font-weight: bold }
+		h2.ctl { font-family: "Lohit Devanagari"; font-size: 18pt; font-weight: bold }
+		blockquote { margin-left: 0.39in; margin-right: 0.39in; background: transparent }
+		a:link { color: #000080; so-language: zxx; text-decoration: underline }
+		strong { font-weight: bold }
+		em { font-style: italic }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><h1 class="western">
+KiCad Mini PCI Express (mPCIe) Library</h1>
+<p>KiCad Library for creating designs with Mini PCI express (mPCIe)
+cards. Includes bits for both &quot;host&quot;, a board you plug
+mPCIe cards into and &quot;cards&quot; themselves.</p>
+<p>Library has;</p>
+<ul>
+	<li><p style="margin-bottom: 0in">Schematic components. 
+	</p>
+	<li><p style="margin-bottom: 0in">PCB module footprints. 
+	</p>
+	<li><p>KiCad templates (eventually). 
+	</p>
+</ul>
+<p>Currently status is;</p>
+<ul>
+	<li><p>PCB module for &quot;Dual-Use Socket&quot; which supports
+	&quot;full size&quot; and &quot;half size&quot; mPCIe cards.</p>
+	<li><p>PCB module for a &quot;full size&quot; mPCIe cards (including
+	board edge).</p>
+	<li><p>Includes markings for &quot;IO connectors&quot; region.</p>
+	<li><p>Includes &quot;F2&quot; keep outs marked on the bottom silk
+	screen.</p>
+	<li><p>PCB module for a &quot;half size&quot; mPCIe cards (including
+	board edege).</p>
+	<li><p>Includes &quot;H2&quot; keep outs marked on the bottom silk
+	screen.</p>
+	<li><p>Schematic component for mPCIe socket.</p>
+</ul>
+<p>TODO list is;</p>
+<ul>
+	<li><p>Create a schematic component for a mPCIe card edge.</p>
+	<li><p>Add support for &quot;Dual Head-to-Head&quot; sockets</p>
+	<ul>
+		<li><p style="margin-bottom: 0in">Create a schematic component. 
+		</p>
+		<li><p style="margin-bottom: 0in">Create a PCB footprint. 
+		</p>
+	</ul>
+	<li><p>Create a project templates for a mPCIe card;</p>
+	<ul>
+		<li><p style="margin-bottom: 0in">Create SMBus compatible schematic
+		for auto-detection. 
+		</p>
+		<li><p style="margin-bottom: 0in">Create an example &quot;USB2.0&quot;
+		only mPCIe card. 
+		</p>
+	</ul>
+	<li><p>Actually verify the designs with real parts.</p>
+	<li><p>Build something cool.</p>
+</ul>
+<p><img src="brd.png"></p>
+<h2 class="western"><a name="user-content-requirements-for-manufacture"></a>
+Requirements for manufacture</h2>
+<p>To get a PCB manufactured which is &quot;mostly&quot; compatible
+with mPCIe cards you'll need;</p>
+<ul>
+	<li><p style="margin-bottom: 0in">1mm PCB width. 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in">Most cheap places seem to do
+		1.6mm by default. 
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in">Minimum 0.20mm (~7.87 mils)
+	clearance. 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in">6.00 mils should be fine and
+		supported by most places. 
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in">Minimum 0.60mm (~23.62 mils) trace
+	element width. 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in">Most places should support much
+		better than this. 
+		</p>
+	</ul>
+	<li><p>Trace to board-edge clearance 0.55mm (~21.7 mils). 
+	</p>
+</ul>
+<h2 class="western"><a name="user-content-mpcie-card-requirements"></a>
+mPCIe card requirements.</h2>
+<p>When creating mPCIe cards, your manufacturer will need to satisfy
+the above requirements plus a couple of extras.</p>
+<ul>
+	<li><p style="margin-bottom: 0in">The boards need to be routed / cut
+	out with XXX tolerance. 
+	</p>
+	<li><p>Technically the PCB is suppose to have tapered edges on the
+	side which is inserted into the socket. If you don't care about
+	slowly destroying your socket then it kind of works. (IE <strong>Don't
+	do this with your $2000 laptop!</strong>) 
+	</p>
+</ul>
+<h1 class="western"><a name="user-content-parts"></a>Parts</h1>
+<p>The following parts should work in theory:</p>
+<ul>
+	<li><p style="margin-bottom: 0in"><strong>UNTESTED!</strong> - TE
+	Connectivity / AMP - 2041119-1 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in"><a href="http://www.mouser.com/ProductDetail/TE-Connectivity-AMP/2041119-1/?qs=sGAEpiMZZMtWxQ3D3EXBN3JxM32iIIxxBU1I37AUdhw%3D">1
+		for $0.72 @ Mouser</a> 
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in"><strong>UNTESTED!</strong> - FCI -
+	10123824-A20LF 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in"><a href="http://www.mouser.com/ProductDetail/FCI/10123824-A20LF/?qs=sGAEpiMZZMtWxQ3D3EXBN8%252bIMToTtTg7BVGtVxpLeEk%3D">1
+		for $1.11 @ Mouser </a>
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in"><strong>UNTESTED!</strong> - JAE
+	Electronics - MM60-52B1-G1-R850 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in"><a href="http://www.digikey.com/product-detail/en/MM60-52B1-G1-R850/670-2516-1-ND/2504806">1
+		for $1.59 @ Digikey</a> 
+		</p>
+		<li><p style="margin-bottom: 0in"><a href="http://www.mouser.com/ProductDetail/JAE-Electronics/MM60-52B1-E1-R650/?qs=sGAEpiMZZMtWxQ3D3EXBN7ApTxJ1wb7v9g%2F%2FwoAPCuU%3D">1
+		for $1.96 @ Mouser</a> 
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in"><strong>UNTESTED!</strong> - Molex
+	Inc - 048338-0052 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in"><a href="http://www.digikey.com/product-detail/en/0483380052/WM9834CT-ND/4176649">1
+		for $1.76 @ Digikey</a> 
+		</p>
+	</ul>
+	<li><p style="margin-bottom: 0in"><strong>UNTESTED!</strong> -
+	Rabbit Semiconductor - 498-0090 
+	</p>
+	<ul>
+		<li><p style="margin-bottom: 0in"><a href="http://www.digikey.com/product-detail/en/498-0090/602-1271-ND/3482024">1
+		for $2.38 @ Digikey</a> 
+		</p>
+		<li><p><a href="http://www.mouser.com/ProductDetail/Rabbit-Semiconductor/498-0090/?qs=sGAEpiMZZMtWxQ3D3EXBN4ZZA46zsq3PiF0nzWM4Pf8%3D">1
+		for $2.38 @ Mouser</a> 
+		</p>
+	</ul>
+</ul>
+<h1 class="western"><a name="user-content-msata"></a>mSATA</h1>
+<p>Aparantly <a href="http://www.te.com/catalog/products/en?q=2041119-1">mSATA
+also uses this connector</a>? Investigate!</p>
+<blockquote>Mini-SATA (mSATA) The connector is similar in appearance
+to a PCI Express Mini Card interface, but is not electrically
+compatible; the data signals (TX±/RX± SATA, PETn0 PETp0 PERn0 PERp0
+PCI Express) need a connection to the SATA host controller instead of
+the PCI Express host controller. 
+</blockquote>
+<h1 class="western"><a name="user-content-contributing"></a>Contributing</h1>
+<p>I <strong>love</strong> contributions. Just fork and send me a
+pull request!</p>
+<p><strong>If I don't respond to your pull request within a couple of
+days, please poke me!</strong></p>
+<p>If you make (or convert) these to Eagle, I'd be more than happy to
+include a link to your repository.</p>
+<h1 class="western"><a name="user-content-author--license"></a>Author
+&amp; License</h1>
+<p>This library was created by <a href="https://blog.mithis.net/">Tim
+'mithro' Ansell</a> as he needed a cheap connector for <a href="https://github.com/hedj/">John
+Hedditch's</a> <a href="https://github.com/hedj/radio">GreenArrays
+based SDR RPi Hat</a>. <strong>WARNING:</strong> This project <em>doesn't</em>
+use the mPCIe connector for it's intended usage, so don't use it as
+an example.</p>
+<p>This library is released under the <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache
+2.0 License</a>.</p>
+<p>If you use this library for anything, I'd love an <a href="https://github.com/mithro/kicad-mini-pci-express/blob/master/mithro@mithis.com">email</a>
+with a picture of the project (of course this isn't <em>required</em>
+at all). People making open source hardware make me happy!</p>
+<p style="margin-bottom: 0in; line-height: 100%"><br/>
+
+</p>
+</body>
+</html>
